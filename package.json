@@ -1,39 +1,41 @@
 {
-  "name": "midi-json",
-  "version": "0.1.0",
-  "description": "midi in json format",
-  "main": "app.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "start": "babel-node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**"
-    ],
-    "testRegex": "./test/.*.js$",
-    "rootDir": "."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jsphweid/midiJSON.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jsphweid/midiJSON/issues"
-  },
-  "homepage": "https://github.com/jsphweid/midiJSON#readme",
-  "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-jest": "^19.0.0",
-    "babel-preset-es2015": "^6.24.0",
-    "jest": "^19.0.2",
-    "regenerator-runtime": "^0.10.3"
-  }
+    "name": "midi-json",
+    "version": "0.1.0",
+    "description": "midi in json format",
+    "main": "app.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "babel-node src/app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "**/*.{js,jsx}",
+            "!**/node_modules/**",
+            "!**/vendor/**"
+        ],
+        "testRegex": "./test/.*.js$",
+        "rootDir": "."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jsphweid/midiJSON.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jsphweid/midiJSON/issues"
+    },
+    "homepage": "https://github.com/jsphweid/midiJSON#readme",
+    "devDependencies": {
+        "babel-cli": "^6.24.0",
+        "babel-jest": "^19.0.0",
+        "babel-preset-es2015": "^6.24.0",
+        "jest": "^19.0.2",
+        "regenerator-runtime": "^0.10.3"
+    },
+    "dependencies": {
+    }
 }
