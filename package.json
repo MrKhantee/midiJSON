@@ -7,7 +7,7 @@
         "test": "tests"
     },
     "scripts": {
-        "start": "babel-watch src/main.js",
+        "dev": "babel-watch --inspect src/main.js",
         "test": "npm run jest"
     },
     "jest": {

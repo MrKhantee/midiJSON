@@ -1,10 +1,11 @@
 import Converters from './converters'
+import ChunksTodoMaker from './chunksTodoMaker'
 
 const bigJson = {}
 
 const parseMThdHeader = (data) => {
 
-    const lengthOfMThd = Converters.bufferToDec(data.slice(4, 8))
+    // I don't implement the possible cases for larger than 6 bytes for the slice(4, 8)
 
     const formatAsInt = Converters.bufferToDec(data.slice(8, 10))
     const numberOfChannels = Converters.bufferToDec(data.slice(10, 12))
@@ -12,7 +13,13 @@ const parseMThdHeader = (data) => {
     bigJson['typeOfMidiFile'] = formatAsInt
     bigJson['numberOfChannels'] = numberOfChannels
 
-    const figureOut = Converters.bufferToBinStr(data.slice(12, 14))
+    const fullBinaryDivisionStr = Converters.bufferToBinStrFull(data.slice(12, 14))
+    const firstBit = fullBinaryDivisionStr[0]
+    if (firstBit === '0') {
+        bigJson['pulsesPerQuarterNote'] = Converters.getPulsesPerQuarterNote(fullBinaryDivisionStr)
+    } else {
+        bigJson['millisecondTiming'] = Converters.getTicksPerSecond(fullBinaryDivisionStr)
+    }
 
 }
 
@@ -20,17 +27,11 @@ export const parseMidiFile = (data) => {
 
     parseMThdHeader(data)
 
-    for (let i = 0; i < 10; i++) {
-        console.log(data[i].toString(16))
-    }
+    const bufferSizeInBytes = data.length
+    bigJson['byteSizeOfOriginalMidiFile'] = bufferSizeInBytes
 
+    const chunksTodo = ChunksTodoMaker.makeChunksTodo(data, bufferSizeInBytes)
 
-
-
-
-
-
-
-
+    console.log(chunksTodo)
     console.log(bigJson)
 }

@@ -6,6 +6,7 @@ import { parseMidiFile } from './parser'
 const pathToSampleMid = __dirname + '/sampleMidiFiles/sample2_bach.mid'
 
 const isMidiFile = (firstEightBytes) => {
+
     const firstFourBytes = firstEightBytes.slice(0, 4).toString()
     const secondFourBytes = firstEightBytes.slice(4, 8).toString('hex')
     return firstFourBytes === "MThd" && secondFourBytes === '00000006'
