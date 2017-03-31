@@ -1,3 +1,5 @@
+import CONFIG from './config'
+
 export default class Converters {
 
     static checkBin(n) { return/^[01]{1,64}$/.test(n) }
@@ -55,6 +57,13 @@ export default class Converters {
         const ticksPerFrame = this.bin2Dec(bitString.slice(8, 16))
         const ticksPerSecond = framesPerSecond * ticksPerFrame
         return ticksPerSecond
+
+    }
+
+    static ppqnToTicksPerSecond(ppqn, bpm = CONFIG.defaultBpm) {
+
+        const quarterNotesPerSecond = bpm / 60
+        return ppqn * quarterNotesPerSecond
 
     }
 

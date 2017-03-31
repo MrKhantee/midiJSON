@@ -1,5 +1,5 @@
 import Converters from './converters'
-import ChunksTodoMaker from './chunksTodoMaker'
+import TracksTodoMaker from './tracksTodoMaker'
 
 const bigJson = {}
 
@@ -17,8 +17,9 @@ const parseMThdHeader = (data) => {
     const firstBit = fullBinaryDivisionStr[0]
     if (firstBit === '0') {
         bigJson['pulsesPerQuarterNote'] = Converters.getPulsesPerQuarterNote(fullBinaryDivisionStr)
+        bigJson['ticksPerSecond'] = Converters.ppqnToTicksPerSecond(bigJson.pulsesPerQuarterNote)
     } else {
-        bigJson['millisecondTiming'] = Converters.getTicksPerSecond(fullBinaryDivisionStr)
+        bigJson['ticksPerSecond'] = Converters.getTicksPerSecond(fullBinaryDivisionStr)
     }
 
 }
@@ -30,8 +31,15 @@ export const parseMidiFile = (data) => {
     const bufferSizeInBytes = data.length
     bigJson['byteSizeOfOriginalMidiFile'] = bufferSizeInBytes
 
-    const chunksTodo = ChunksTodoMaker.makeChunksTodo(data, bufferSizeInBytes)
+    const tracksTodo = TracksTodoMaker.makeTracksTodo(data, bufferSizeInBytes)
 
-    console.log(chunksTodo)
+    Object.keys(tracksTodo).forEach((trackKey, index) => {
+
+        const track = tracksTodo[trackKey]
+
+        // const parsedTrack = TrackParser.parseTrack(track, data.slice(track.startByteInclusive, track.endByteExclusive))
+
+    })
+
     console.log(bigJson)
 }

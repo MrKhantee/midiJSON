@@ -63,5 +63,11 @@ describe('Converters work as expected', () => {
 
     })
 
+    test('ppqn to millisecond timing works', () => {
+
+        expect(Converters.ppqnToTicksPerSecond(480, 120)).toBe(960)
+
+    })
+
 })
 

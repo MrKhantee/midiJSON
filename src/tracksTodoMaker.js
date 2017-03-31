@@ -1,6 +1,6 @@
-export default class ChunkTodoListMaker {
+export default class TrackTodoListMaker {
 
-    static makeChunksTodo(data, bufferSizeInBytes) {
+    static makeTracksTodo(data, bufferSizeInBytes) {
 
         const chunksToProcess = {}
         let byteIndex = 0
@@ -8,7 +8,7 @@ export default class ChunkTodoListMaker {
 
         while (byteIndex < bufferSizeInBytes) {
 
-            if (ChunkTodoListMaker.byteIsBeginningOfAnMTrkChunk(data, byteIndex, bufferSizeInBytes)) {
+            if (TrackTodoListMaker.byteIsBeginningOfAnMTrkChunk(data, byteIndex, bufferSizeInBytes)) {
 
                 if (previousChunkStartByteIndex) {
                     chunksToProcess['chunkAt' + previousChunkStartByteIndex]['endByteExclusive'] = byteIndex
